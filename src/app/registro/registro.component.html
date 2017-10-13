@@ -1,0 +1,64 @@
+<div class="registration-main">
+<h2 class="registration-title">Creá tu cuenta gratis de Sendforce ahora</h2>
+	<em class="registration-line"></em>
+	<div class="row">
+		<div class="col-md-6 d-none d-md-block">
+			<div class="registration-info-block">
+				<div class="registration-info">
+					<div class="info-icon user-icon"></div>
+					<div class="info-text">
+						<h3>Cuenta Gratuita</h3>
+						<p>Here you can write a feature description for your dashboard, let the users know what is the value that you give them.</p>
+					</div>
+				</div>
+				<div class="registration-info">
+					<div class="info-icon stats-icon"></div>
+					<div class="info-text">
+						<h3>Máxima Efectividad</h3>
+						<p>Here you can write a feature description for your dashboard, let the users know what is the value that you give them.</p>
+					</div>
+				</div>
+				<div class="registration-info">
+					<div class="info-icon support-icon"></div>
+					<div class="info-text">
+						<h3>Soporte Inmediato</h3>
+						<p>Here you can write a feature description for your dashboard, let the users know what is the value that you give them.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<form method="post" class="registration-form" #formRegisterUser="ngForm" (ngSubmit)="onSubmit()" id="formRegisterUser">
+				<div class="registration-errors">
+					<p *ngFor="let error of errors">{{error}}</p>
+				</div>
+				<div class="registration-input-block">
+					<i class="registration-input-icon fa fa-user-o"></i>
+					<input type="text" name="name" id="name" [(ngModel)]="user.name" placeholder="Ingresá tu nombre" class="registration-input">
+				</div>
+				<div class="registration-input-block">
+					<i class="registration-input-icon fa fa-envelope-o"></i>
+					<input type="text" name="email" id="email" [(ngModel)]="user.email" placeholder="Ingresá tu email" class="registration-input">
+				</div>
+				<div class="registration-input-block padding-xs">
+					<i class="registration-input-icon fa fa-lock"></i>
+					<input type="password" name="password" id="password" [(ngModel)]="user.password" placeholder="Ingresá tu contraseña" class="registration-input">
+					<small>Debe tener entre 8 y 16 caractéres.</small>
+				</div>
+				<div class="registration-input-block padding-xs">
+					<label for="terms">
+						<input type="checkbox" name="terms" id="terms" class="icheck" checked>
+						<span>Sí, quiero recibir novedades y noticias</span>
+					</label>
+				</div>
+				<div class="registration-submit-block">
+					<button type="submit" class="registration-btn">Crear Cuenta</button>
+				</div>
+			</form>
+			<div class="registration-footer">
+				<p class="registration-terms">Al crear una cuenta, aceptaras los <a href="">Términos y Condiciones</a> y las <a href="" class="terms-link">Políticas de Privacidad</a>.</p>
+				<p>¿Ya tienes una cuenta? <a [routerLink]="['/login']"><b>Ingresá Ahora</b></a></p>
+			</div>
+		</div>
+	</div>
+</div>
