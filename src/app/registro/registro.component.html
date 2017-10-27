@@ -1,4 +1,4 @@
-<div class="registration-main">
+<div class="registration-main" *ngIf="!registroexitoso">
 <h2 class="registration-title">Creá tu cuenta gratis de Sendforce ahora</h2>
 	<em class="registration-line"></em>
 	<div class="row">
@@ -34,15 +34,15 @@
 				</div>
 				<div class="registration-input-block">
 					<i class="registration-input-icon fa fa-user-o"></i>
-					<input type="text" name="name" id="name" [(ngModel)]="user.name" placeholder="Ingresá tu nombre" class="registration-input">
+					<input type="text" name="name" id="name" required [ngClass]="{'error':arrayOfKeys.includes('name')}" [(ngModel)]="user.name" placeholder="Ingresá tu nombre" class="registration-input">
 				</div>
 				<div class="registration-input-block">
 					<i class="registration-input-icon fa fa-envelope-o"></i>
-					<input type="text" name="email" id="email" [(ngModel)]="user.email" placeholder="Ingresá tu email" class="registration-input">
+					<input type="text" name="email" id="email" required [ngClass]="{'error':arrayOfKeys.includes('email')}" [(ngModel)]="user.email" placeholder="Ingresá tu email" class="registration-input">
 				</div>
 				<div class="registration-input-block padding-xs">
 					<i class="registration-input-icon fa fa-lock"></i>
-					<input type="password" name="password" id="password" [(ngModel)]="user.password" placeholder="Ingresá tu contraseña" class="registration-input">
+					<input type="password" name="password" id="password" required [ngClass]="{'error':arrayOfKeys.includes('password')}" [(ngModel)]="user.password" placeholder="Ingresá tu contraseña" class="registration-input">
 					<small>Debe tener entre 8 y 16 caractéres.</small>
 				</div>
 				<div class="registration-input-block padding-xs">
@@ -52,7 +52,7 @@
 					</label>
 				</div>
 				<div class="registration-submit-block">
-					<button type="submit" class="registration-btn">Crear Cuenta</button>
+					<button type="submit" class="registration-btn" [ngClass]="{'is-loading':isloading}">Crear Cuenta</button>
 				</div>
 			</form>
 			<div class="registration-footer">
@@ -60,5 +60,14 @@
 				<p>¿Ya tienes una cuenta? <a [routerLink]="['/login']"><b>Ingresá Ahora</b></a></p>
 			</div>
 		</div>
+	</div>
+</div>
+
+<div class="session-main" *ngIf="registroexitoso">
+	<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+	<h2 class="session-title">¡Bienvenido a Sendforce!</h2>
+	<p class="session-subtitle">Hemos enviado un email a tu casilla de correo para que puedas validar tu email e ingresar en tu cuenta.</p>
+	<div class="session-footer">
+		<p>¿Ya validaste tu correo? <a [routerLink]="['/login']"><b>Ingresá Ahora</b></a></p>
 	</div>
 </div>

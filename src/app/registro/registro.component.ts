@@ -8,10 +8,13 @@ import {UserService} from '../services/user.service';
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.css']
 })
-export class RegistroComponent implements OnInit {
+export class registroComponent implements OnInit {
 
   public user: User;
   public errors: Array<any>;
+  public arrayOfKeys: Array<any>=[];
+  public isloading:boolean=false;
+  public registroexitoso:boolean=false;
    
   constructor(private userService: UserService,private _router: Router) { 
 	 this.user = new User('', '', ''); 
@@ -21,24 +24,23 @@ export class RegistroComponent implements OnInit {
   }
   
   onSubmit() {
-        console.log(this.user);
 		this.errors=[];
+		this.arrayOfKeys=[];
+		this.isloading=true;
         this.userService.addUser(this.user).subscribe(
             response => {
-				console.log(response);
+				this.isloading=false;
 				if(response.error){
-						//console.log(response.error);
 						for (let key in response.error) {
-							//console.log(response.error[key][0]);
 							this.errors.push(response.error[key][0]);
+							this.arrayOfKeys.push(key);
 						}
 				}
 				else
-				this._router.navigate(['/registroexitoso']);
-                //console.log(response);
+				this.registroexitoso=true;
             },
             error => {
-                console.log(<any> error);
+				this.isloading=false;
             }
         );
     }

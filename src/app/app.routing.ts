@@ -1,16 +1,15 @@
 import { ModuleWithProviders } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { LoginComponent } from './login/login.component';
-import { RegistroComponent } from './registro/registro.component';
-import { RegistroexitosoComponent } from './registroexitoso/registroexitoso.component';
-import { PasswordresetComponent } from './passwordreset/passwordreset.component';
-
+import { loginComponent } from './login/login.component';
+import { registroComponent } from './registro/registro.component';
+import { passwordresetComponent } from './passwordreset/passwordreset.component';
+import { confirmationComponent } from './confirmation/confirmation.component';
 
 const appRoutes: Routes = [
-	{ path: 'login', component: LoginComponent},
-	{ path: 'registro', component: RegistroComponent},
-	{ path: 'registroexitoso', component: RegistroexitosoComponent},
-	{ path: 'resetpassword', component: PasswordresetComponent},
+	{ path: 'login', component: loginComponent},
+	{ path: 'register', component: registroComponent},
+	{ path: 'resetpassword', component: passwordresetComponent},
+	{ path: 'confirmation', component: confirmationComponent},
     { path: '**', redirectTo: 'login' }
 ];
 

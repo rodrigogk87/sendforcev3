@@ -5,19 +5,20 @@ import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { RegistroComponent } from './registro/registro.component';
-import { PasswordresetComponent } from './passwordreset/passwordreset.component';
+import { loginComponent } from './login/login.component';
+import { registroComponent } from './registro/registro.component';
+import { passwordresetComponent } from './passwordreset/passwordreset.component';
 import {UserService} from './services/user.service';
-import { RegistroexitosoComponent } from './registroexitoso/registroexitoso.component';
+import { confirmationComponent } from './confirmation/confirmation.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegistroComponent,
-    PasswordresetComponent,
-    RegistroexitosoComponent
+    loginComponent,
+    registroComponent,
+    passwordresetComponent,
+    confirmationComponent
   ],
   imports: [
 	routing,

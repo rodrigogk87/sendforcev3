@@ -16,4 +16,8 @@ export class UserService {
         return this._http.post(GLOBAL.apiurl + '/user', user)
             .map(res => res.json());
     }
+	confirmEmail(token_email: string):Observable<any> {
+        return this._http.post(GLOBAL.apiurl + '/email-confirmation',  {token_email: token_email})
+            .map(res => res.json());
+    }
 }
