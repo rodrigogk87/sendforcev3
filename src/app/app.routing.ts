@@ -8,7 +8,7 @@ import { confirmationComponent } from './confirmation/confirmation.component';
 const appRoutes: Routes = [
 	{ path: 'login', component: loginComponent},
 	{ path: 'register', component: registroComponent},
-	{ path: 'resetpassword', component: passwordresetComponent},
+	{ path: 'reset-password', component: passwordresetComponent},
 	{ path: 'confirmation', component: confirmationComponent},
     { path: '**', redirectTo: 'login' }
 ];
