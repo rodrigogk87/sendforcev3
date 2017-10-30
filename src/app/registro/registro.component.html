@@ -28,7 +28,7 @@
 			</div>
 		</div>
 		<div class="col-md-6">
-			<form method="post" class="registration-form" #formRegisterUser="ngForm" (ngSubmit)="onSubmit()" id="formRegisterUser">
+			<form method="post" class="registration-form" #formRegisterUser="ngForm" (ngSubmit)="onSubmit(formRegisterUser)" id="formRegisterUser">
 				<div class="registration-errors">
 					<p *ngFor="let error of errors">{{error}}</p>
 				</div>
@@ -38,11 +38,11 @@
 				</div>
 				<div class="registration-input-block">
 					<i class="registration-input-icon fa fa-envelope-o"></i>
-					<input type="text" name="email" id="email" required [ngClass]="{'error':arrayOfKeys.includes('email')}" [(ngModel)]="user.email" placeholder="Ingresá tu email" class="registration-input">
+					<input type="text" name="email" id="email" required email [ngClass]="{'error':arrayOfKeys.includes('email')}" [(ngModel)]="user.email" placeholder="Ingresá tu email" class="registration-input">
 				</div>
 				<div class="registration-input-block padding-xs">
 					<i class="registration-input-icon fa fa-lock"></i>
-					<input type="password" name="password" id="password" required [ngClass]="{'error':arrayOfKeys.includes('password')}" [(ngModel)]="user.password" placeholder="Ingresá tu contraseña" class="registration-input">
+					<input type="password" minlength="8" maxlength="16" name="password" id="password" required [ngClass]="{'error':arrayOfKeys.includes('password')}" [(ngModel)]="user.password" placeholder="Ingresá tu contraseña" class="registration-input">
 					<small>Debe tener entre 8 y 16 caractéres.</small>
 				</div>
 				<div class="registration-input-block padding-xs">

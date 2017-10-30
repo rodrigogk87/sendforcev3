@@ -8,7 +8,8 @@ import { AppComponent } from './app.component';
 import { loginComponent } from './login/login.component';
 import { registroComponent } from './registro/registro.component';
 import { passwordresetComponent } from './passwordreset/passwordreset.component';
-import {UserService} from './services/user.service';
+import { UserService } from './services/user.service';
+import { FormErrorsService } from './services/form-errors.service';
 import { confirmationComponent } from './confirmation/confirmation.component';
 
 
@@ -26,7 +27,7 @@ import { confirmationComponent } from './confirmation/confirmation.component';
 	HttpModule,
 	FormsModule
   ],
-  providers: [appRoutingProviders,UserService],
+  providers: [appRoutingProviders,UserService,FormErrorsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
