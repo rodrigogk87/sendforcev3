@@ -1,8 +1,8 @@
 /*
-	Site Name SENDFORCE
-	Theme URI http//www.sendforce.io
-	Version 1.0
-	Author Juan Luciano Romay
+  Site Name SENDFORCE
+  Theme URI http//www.sendforce.io
+  Version 1.0
+  Author Juan Luciano Romay
 */
 /*------------------------------------*
     MAIN/GLOBAL
@@ -97,7 +97,7 @@ ol {
   display: -moz-box;
   display: -webkit-flex;
   display: -ms-flexbox;
-  display: flex;
+  display: box;
   display: flex;
   -webkit-box-align: center;
   -moz-box-align: center;
@@ -297,11 +297,8 @@ body {
 .session-main .session-form {
   margin: 40px 20px 30px 20px;
 }
-.session-main .session-form .session-errors {
-  margin-bottom: 20px;
-}
-.session-main .session-form .session-errors p {
-  margin: 0 0 5px 0;
+.session-main .session-form p.error-message {
+  margin: 5px 0 0 0;
   color: #ed0036;
   font-size: 13px;
 }
@@ -485,11 +482,8 @@ body {
   margin: 40px 20px 30px 20px;
   max-width: 370px;
 }
-.registration-main .registration-form .registration-errors {
-  margin-bottom: 20px;
-}
-.registration-main .registration-form .registration-errors p {
-  margin: 0 0 5px 0;
+.registration-main .registration-form p.error-message {
+  margin: 5px 0 0 0;
   color: #ed0036;
   font-size: 13px;
 }
@@ -651,11 +645,8 @@ body {
 .password-recovery-main .password-form {
   margin: 40px 20px 30px 20px;
 }
-.password-recovery-main .password-form .password-errors {
-  margin-bottom: 20px;
-}
-.password-recovery-main .password-form .password-errors p {
-  margin: 0 0 5px 0;
+.password-recovery-main .password-form p.error-message {
+  margin: 5px 0 0 0;
   color: #ed0036;
   font-size: 13px;
 }

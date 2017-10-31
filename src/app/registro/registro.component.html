@@ -35,6 +35,7 @@
 				<div class="registration-input-block">
 					<i class="registration-input-icon fa fa-user-o"></i>
 					<input type="text" name="name" id="name" required [ngClass]="{'error':arrayOfKeys.includes('name')}" [(ngModel)]="user.name" placeholder="Ingresá tu nombre" class="registration-input">
+					<p class="error-message">Este es tu mensaje de error!</p>
 				</div>
 				<div class="registration-input-block">
 					<i class="registration-input-icon fa fa-envelope-o"></i>
