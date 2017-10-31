@@ -29,22 +29,22 @@
 		</div>
 		<div class="col-md-6">
 			<form method="post" class="registration-form" #formRegisterUser="ngForm" (ngSubmit)="onSubmit(formRegisterUser)" id="formRegisterUser">
-				<div class="registration-errors">
-					<p *ngFor="let error of errors">{{error}}</p>
-				</div>
+				
 				<div class="registration-input-block">
 					<i class="registration-input-icon fa fa-user-o"></i>
-					<input type="text" name="name" id="name" required [ngClass]="{'error':arrayOfKeys.includes('name')}" [(ngModel)]="user.name" placeholder="Ingresá tu nombre" class="registration-input">
-					<p class="error-message">Este es tu mensaje de error!</p>
+					<input type="text" name="name" id="name" required [ngClass]="{'error':errors.has('name')}" [(ngModel)]="user.name" placeholder="Ingresá tu nombre" class="registration-input">
+					<p *ngIf="errors.has('name')" class="error-message">{{errors.get('name')}}</p>
 				</div>
 				<div class="registration-input-block">
 					<i class="registration-input-icon fa fa-envelope-o"></i>
-					<input type="text" name="email" id="email" required email [ngClass]="{'error':arrayOfKeys.includes('email')}" [(ngModel)]="user.email" placeholder="Ingresá tu email" class="registration-input">
+					<input type="text" name="email" id="email" required email [ngClass]="{'error':errors.has('email')}" [(ngModel)]="user.email" placeholder="Ingresá tu email" class="registration-input">
+					<p *ngIf="errors.has('email')" class="error-message">{{errors.get('email')}}</p>
 				</div>
 				<div class="registration-input-block padding-xs">
 					<i class="registration-input-icon fa fa-lock"></i>
-					<input type="password" minlength="8" maxlength="16" name="password" id="password" required [ngClass]="{'error':arrayOfKeys.includes('password')}" [(ngModel)]="user.password" placeholder="Ingresá tu contraseña" class="registration-input">
+					<input type="password" minlength="8" maxlength="16" name="password" id="password" required [ngClass]="{'error':errors.has('password')}" [(ngModel)]="user.password" placeholder="Ingresá tu contraseña" class="registration-input">
 					<small>Debe tener entre 8 y 16 caractéres.</small>
+					<p *ngIf="errors.has('password')" class="error-message">{{errors.get('password')}}</p>
 				</div>
 				<div class="registration-input-block padding-xs">
 					<label for="terms">

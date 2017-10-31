@@ -9,8 +9,8 @@ import { loginComponent } from './login/login.component';
 import { registroComponent } from './registro/registro.component';
 import { passwordresetComponent } from './passwordreset/passwordreset.component';
 import { UserService } from './services/user.service';
-import { FormErrorsService } from './services/form-errors.service';
 import { confirmationComponent } from './confirmation/confirmation.component';
+import { FormErrorsService } from './services/form-errors.service';
 
 
 @NgModule({
