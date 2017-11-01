@@ -1,28 +1,36 @@
 <div class="session-main">
 	<div class="session-user"></div>
 	<h2 class="session-title">Ingresar a Sendforce</h2>
-	<form action="" method="get" class="session-form">
+	<form method="post" class="session-form" #formLogInUser="ngForm" (ngSubmit)="onSubmit(formLogInUser)" id="formLogInUser">
 		<!--<div class="session-errors">
 			<p>El usuario o contraseña ingresados son incorrectos.</p>
 		</div>-->
+		
+		<p *ngIf="errors.has('email')" class="error-message">{{errors.get('email')}}</p>
 		<div class="session-input-block">
 			<i class="session-input-icon fa fa-envelope-o"></i>
-			<input type="text" name="email" id="email" placeholder="Ingresá tu email" class="session-input">
+			<input type="text" name="email" id="email" required email [ngClass]="{'error':errors.has('email')}" [(ngModel)]="user.email" placeholder="Ingresá tu email" class="session-input">
 		</div>
+		
+		<p *ngIf="errors.has('password')" class="error-message">{{errors.get('password')}}</p>
 		<div class="session-input-block padding-xs">
 			<i class="session-input-icon fa fa-lock"></i>
-			<input type="password" name="password" id="password" placeholder="Ingresá tu contraseña" class="session-input">
+			<input type="password" name="password" id="password" minlength="8" maxlength="16" required [ngClass]="{'error':errors.has('password')}" [(ngModel)]="user.password" placeholder="Ingresá tu contraseña" class="session-input">
 		</div>
+		
 		<div class="session-input-block padding-xs">
 			<label for="rememberme">
 				<input type="checkbox" name="rememberme" id="rememberme" class="icheck" checked>
 				<span>Recordarme en este dispositivo</span>
 			</label>
 		</div>
+		
 		<div class="session-submit-block">
 			<button type="submit" class="session-btn">Ingresar</button>
 		</div>
+	
 	</form>
+	
 	<div class="session-footer">
 		<p>¿Aún no tienes una cuenta? <a [routerLink]="['/register']"><b>¡Regístrate Gratis!</b></a></p>
 		<p><a [routerLink]="['/reset-password']">¿Olvidaste tu contraseña?</a></p>

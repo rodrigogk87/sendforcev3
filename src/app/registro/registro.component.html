@@ -29,33 +29,39 @@
 		</div>
 		<div class="col-md-6">
 			<form method="post" class="registration-form" #formRegisterUser="ngForm" (ngSubmit)="onSubmit(formRegisterUser)" id="formRegisterUser">
-				
+
+				<p *ngIf="errors.has('name')" class="error-message">{{errors.get('name')}}</p>
 				<div class="registration-input-block">
 					<i class="registration-input-icon fa fa-user-o"></i>
 					<input type="text" name="name" id="name" required [ngClass]="{'error':errors.has('name')}" [(ngModel)]="user.name" placeholder="Ingresá tu nombre" class="registration-input">
-					<p *ngIf="errors.has('name')" class="error-message">{{errors.get('name')}}</p>
 				</div>
+				
+				<p *ngIf="errors.has('email')" class="error-message">{{errors.get('email')}}</p>
 				<div class="registration-input-block">
 					<i class="registration-input-icon fa fa-envelope-o"></i>
 					<input type="text" name="email" id="email" required email [ngClass]="{'error':errors.has('email')}" [(ngModel)]="user.email" placeholder="Ingresá tu email" class="registration-input">
-					<p *ngIf="errors.has('email')" class="error-message">{{errors.get('email')}}</p>
 				</div>
+				
+				<p *ngIf="errors.has('password')" class="error-message">{{errors.get('password')}}</p>
 				<div class="registration-input-block padding-xs">
 					<i class="registration-input-icon fa fa-lock"></i>
 					<input type="password" minlength="8" maxlength="16" name="password" id="password" required [ngClass]="{'error':errors.has('password')}" [(ngModel)]="user.password" placeholder="Ingresá tu contraseña" class="registration-input">
 					<small>Debe tener entre 8 y 16 caractéres.</small>
-					<p *ngIf="errors.has('password')" class="error-message">{{errors.get('password')}}</p>
 				</div>
+				
 				<div class="registration-input-block padding-xs">
 					<label for="terms">
 						<input type="checkbox" name="terms" id="terms" class="icheck" checked>
 						<span>Sí, quiero recibir novedades y noticias</span>
 					</label>
 				</div>
+				
 				<div class="registration-submit-block">
 					<button type="submit" class="registration-btn" [ngClass]="{'is-loading':isloading}">Crear Cuenta</button>
 				</div>
+			
 			</form>
+			
 			<div class="registration-footer">
 				<p class="registration-terms">Al crear una cuenta, aceptaras los <a href="">Términos y Condiciones</a> y las <a href="" class="terms-link">Políticas de Privacidad</a>.</p>
 				<p>¿Ya tienes una cuenta? <a [routerLink]="['/login']"><b>Ingresá Ahora</b></a></p>
