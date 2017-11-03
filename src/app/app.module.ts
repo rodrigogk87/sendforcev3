@@ -14,6 +14,7 @@ import { FormErrorsService } from './services/form-errors.service';
 import { AuthenticationService } from './services/authentication.service';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { LoggedInGuard } from './services/loggued-in-guard.service';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { AuthGuard } from './services/auth-guard.service';
 	FormsModule,
 	AuthModule
   ],
-  providers: [appRoutingProviders,UserService,FormErrorsService,AuthenticationService,AuthGuard],
+  providers: [appRoutingProviders,UserService,FormErrorsService,AuthenticationService,AuthGuard,LoggedInGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

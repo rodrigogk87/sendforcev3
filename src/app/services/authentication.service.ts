@@ -9,14 +9,17 @@ import { GLOBAL } from '../globals/global'
 @Injectable()
 export class AuthenticationService {
     public token: string;
-
+	public static LOGIN_OK=1;
+	public static LOGIN_NOT_ACTIVE=2;
+	public static LOGIN_FAILED=3;
+	
     constructor(private http: Http,public authHttp: AuthHttp) {
         // set token if saved in local storage
         var token = localStorage.getItem('token');
         this.token = token;
     }
 
-    login(email: string, password: string): Observable<boolean> {
+    login(email: string, password: string): Observable<any> {
 		
         return this.http.post(GLOBAL.apiurl+'/authenticate', JSON.stringify({ email: email, password: password }))
             .map(
@@ -30,18 +33,27 @@ export class AuthenticationService {
                     // store  jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('token', token);
 					localStorage.setItem('user', JSON.stringify(user));
+					console.log(user);
                     // return true to indicate successful login
-                    return true; 
-                } else {
-                    // return false to indicate failed login
-					this.token = null;
-					localStorage.removeItem('token');
-					localStorage.removeItem('user');
-                    return false;
+                    return AuthenticationService.LOGIN_OK; 
+                } else if(user){
+					console.log('Debe activar el usuario');
+					this.resetLocalStorage();
+                    return AuthenticationService.LOGIN_NOT_ACTIVE; 
+				}
+				else{
+					console.log('Credenciales invalidas');
+					this.resetLocalStorage();
+                    return AuthenticationService.LOGIN_FAILED;
                 }
             });
     }
 
+	resetLocalStorage(){
+		this.token = null;
+		localStorage.removeItem('token');
+		localStorage.removeItem('user');	
+	}
 		
 	loggedIn() {
 	  return tokenNotExpired();

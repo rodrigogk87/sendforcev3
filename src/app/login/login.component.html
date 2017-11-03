@@ -2,10 +2,8 @@
 	<div class="session-user"></div>
 	<h2 class="session-title">Ingresar a Sendforce</h2>
 	<form method="post" class="session-form" #formLogInUser="ngForm" (ngSubmit)="onSubmit(formLogInUser)" id="formLogInUser">
-		<!--<div class="session-errors">
-			<p>El usuario o contraseña ingresados son incorrectos.</p>
-		</div>-->
-		
+		<p class="error-message" *ngIf="login_error_failed">El usuario o contraseña ingresados son incorrectos.</p>
+		<p class="error-message" *ngIf="login_error_not_active">El usuario aun no ha sido activado, verifique su email y active la cuenta.</p>
 		<p *ngIf="errors.has('email')" class="error-message">{{errors.get('email')}}</p>
 		<div class="session-input-block">
 			<i class="session-input-icon fa fa-envelope-o"></i>
@@ -26,7 +24,7 @@
 		</div>
 		
 		<div class="session-submit-block">
-			<button type="submit" class="session-btn">Ingresar</button>
+			<button type="submit" class="session-btn" [ngClass]="{'is-loading':isloading}">Ingresar</button>
 		</div>
 	
 	</form>

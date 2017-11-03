@@ -15,6 +15,8 @@ export class loginComponent implements OnInit,FormInterface {
   public user: User;
   public errors = new Map();
   public isloading:boolean=false;
+  public login_error_failed=false;
+  public login_error_not_active=false;
   public getTraslatedFormName = {
 	  'name':'Nombre',
 	  'email':'Email',
@@ -34,6 +36,8 @@ export class loginComponent implements OnInit,FormInterface {
 
   onSubmit(formLogInUser) {
 		this.errors= new Map();
+		this.login_error_failed=false;
+		this.login_error_not_active=false;
 		
 		/* Validacion Angular */
 		Object.keys(formLogInUser.controls).forEach( (control_name) => {
@@ -57,16 +61,19 @@ export class loginComponent implements OnInit,FormInterface {
             .subscribe(result => {
 				console.log(result);
 					this.isloading=false;
-					if (result === true) {
-						console.log('LoggedIn');
+					if (result == AuthenticationService.LOGIN_OK) {
 						this.router.navigate(['home']);
-					} else {
-						console.log('Not logued in - failed');
-					}
+					} 
+					if (result == AuthenticationService.LOGIN_NOT_ACTIVE) {
+						this.login_error_not_active=true;
+					} 
+					if (result == AuthenticationService.LOGIN_FAILED) {
+						this.login_error_failed=true;
+					} 
 				},
 				err => {
 					this.isloading=false;
-					console.log(JSON.parse(err.text()).error);
+					this.login_error_failed=true;
 				}
 			);
 		}
