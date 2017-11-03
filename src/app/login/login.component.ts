@@ -3,6 +3,7 @@ import {Router, ActivatedRoute, Params} from "@angular/router";
 import {User} from '../models/user';
 import {UserService} from '../services/user.service';
 import { FormErrorsService } from '../services/form-errors.service';
+import { AuthenticationService } from '../services/authentication.service';
 import { FormInterface } from '../interfaces/FormInterface';
 
 @Component({
@@ -19,7 +20,12 @@ export class loginComponent implements OnInit,FormInterface {
 	  'email':'Email',
 	  'password':'Password',
   }  
-  constructor(private userService: UserService,private _router: Router, private formErrorsService: FormErrorsService) { 
+  
+  constructor(private userService: UserService,
+			  private router: Router, 
+			  private formErrorsService: FormErrorsService,
+			  private authenticationService: AuthenticationService) 
+  { 
  	this.user = new User('', '', ''); 
   }
 
@@ -45,7 +51,24 @@ export class loginComponent implements OnInit,FormInterface {
 		
 		/* Si formulario valida hace llamada ajax */
 		if(formLogInUser.valid){
-			console.log(this.user);
+			//console.log(this.user);
+			this.isloading=true;
+			this.authenticationService.login(this.user.email, this.user.password)
+            .subscribe(result => {
+				console.log(result);
+					this.isloading=false;
+					if (result === true) {
+						console.log('LoggedIn');
+						this.router.navigate(['home']);
+					} else {
+						console.log('Not logued in - failed');
+					}
+				},
+				err => {
+					this.isloading=false;
+					console.log(JSON.parse(err.text()).error);
+				}
+			);
 		}
     }
 }
