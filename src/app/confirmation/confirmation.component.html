@@ -1,3 +1,31 @@
-<p>
-  confirmacion works!
-</p>
+<div class="password-recovery-main">
+
+	<div *ngIf="confirmation_response==RESPONSE_EMAIL_CONFIRMED">
+		<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+		<h2 class="password-title">¡Enhorabuena!</h2>
+		<p class="session-subtitle">Hemos validado correctamente tu email. <br>Ahora podés ingresar en tu cuenta y crear tu primera campaña!</p>
+	</div>
+	
+	<div *ngIf="confirmation_response==RESPONSE_EMAIL_ALREADY_CONFIRMED">
+		<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+		<h2 class="password-title">¡Tú Email ya fue validado!</h2>
+		<p class="session-subtitle">Ya hemos validado correctamente tu email. <br>Hacé clic en el siguiente botón e ingresá en cuenta de sendforce.</p>
+	</div>
+
+	<div *ngIf="confirmation_response==RESPONSE_HASH_DOESNOT_EXIST || confirmation_response==RESPONSE_HASH_NOT_PROVIDED">
+		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2" class="line_marks">
+		<circle class="path circle" fill="none" stroke="#f75f5c" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+		<line class="path line" fill="none" stroke="#f75f5c" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="34.4" y1="37.9" x2="95.8" y2="92.3"/>
+		<line class="path line" fill="none" stroke="#f75f5c" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="95.8" y1="38" x2="34.4" y2="92.2"/>
+		</svg>
+		<h2 class="password-title">Oops! Hubo un error.</h2>
+		<p class="session-subtitle">No hemos podido procesar tu solicitud. <br>Intenta actualizar la página o ponte en contacto con nuestro <a href="">equipo de soporte</a>.</p>
+	</div>
+	
+	<div class="password-form">
+		<div class="password-submit-block">
+			<a [routerLink]="['/login']" class="password-btn">Ingresar a Sendforce</a>
+		</div>
+	</div>
+
+</div>

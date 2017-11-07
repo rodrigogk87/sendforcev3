@@ -9,7 +9,13 @@ import {UserService} from '../services/user.service';
 })
 export class confirmationComponent implements OnInit {
 
+  public RESPONSE_HASH_NOT_PROVIDED=1;
+  public RESPONSE_HASH_DOESNOT_EXIST=2;
+  public RESPONSE_EMAIL_ALREADY_CONFIRMED=3;
+  public RESPONSE_EMAIL_CONFIRMED=4;
+  
   public confirmation_token: string;
+  public confirmation_response=null;
   
   constructor( private route: ActivatedRoute,private userService: UserService) { }
 
@@ -19,10 +25,10 @@ export class confirmationComponent implements OnInit {
 			    this.confirmation_token=params.confirmation_token;
 				this.userService.confirmEmail(this.confirmation_token).subscribe(
 					response => {
-						console.log(response);
+						this.confirmation_response=response.code;
 					},
 					error => {
-						console.log(error);
+						this.confirmation_response=this.RESPONSE_HASH_NOT_PROVIDED;
 					}
 				);   
 		   }

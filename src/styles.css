@@ -1,8 +1,8 @@
 /*
-  Site Name SENDFORCE
-  Theme URI http//www.sendforce.io
-  Version 1.0
-  Author Juan Luciano Romay
+	Site Name SENDFORCE
+	Theme URI http//www.sendforce.io
+	Version 1.0
+	Author Juan Luciano Romay
 */
 /*------------------------------------*
     MAIN/GLOBAL
@@ -276,14 +276,14 @@ body {
   max-width: 370px;
   margin: 47px auto;
 }
-.session-main .session-user {
+.session-user {
   width: 105px;
   height: 105px;
   margin: 0 auto;
   background: url("./assets/img/session-login.svg") no-repeat center;
   background-position: center;
 }
-.session-main .session-title {
+.session-title {
   font-size: 23px;
   line-height: 1.3;
   font-weight: 300;
@@ -291,21 +291,21 @@ body {
   text-align: center;
   margin: 20px 0;
 }
-.session-main .session-title .session-subtitle {
+.session-subtitle {
   text-align: center;
 }
-.session-main .session-form {
+.session-form {
   margin: 40px 20px 30px 20px;
 }
-.session-main .session-form p.error-message {
+.session-form p.error-message {
   margin: 5px 0 0 0;
   color: #ed0036;
   font-size: 13px;
 }
-.session-main .session-form .session-input-block {
+.session-form .session-input-block {
   position: relative;
 }
-.session-main .session-form .session-input-block .session-input-icon {
+.session-form .session-input-block .session-input-icon {
   position: absolute;
   top: 0;
   left: 0;
@@ -316,7 +316,7 @@ body {
   text-align: center;
   width: 48px;
 }
-.session-main .session-form .session-input-block .session-input {
+.session-form .session-input-block .session-input {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -331,23 +331,23 @@ body {
   font-weight: 300;
   margin-bottom: 30px;
 }
-.session-main .session-form .session-input-block .session-input:focus {
+.session-form .session-input-block .session-input:focus {
   border-color: rgba(0,0,0,0.35);
 }
-.session-main .session-form .session-input-block .session-input.error {
+.session-form .session-input-block .session-input.error {
   border-color: #ed0036;
 }
-.session-main .session-form span {
+.session-form span {
   font-size: 14px;
   font-weight: 300;
   color: #a1a1a1;
   margin-left: 5px;
   line-height: 22px;
 }
-.session-main .session-form .session-submit-block {
+.session-form .session-submit-block {
   margin-top: 20px;
 }
-.session-main .session-form .session-submit-block .session-btn {
+.session-form .session-submit-block .session-btn {
   font-family: 'Montserrat', sans-serif;
   display: block;
   width: 100%;
@@ -376,38 +376,38 @@ body {
   transition: all 0.2s ease-in-out;
   outline: 0;
 }
-.session-main .session-form .session-submit-block .session-btn:active {
+.session-form .session-submit-block .session-btn:active {
   -webkit-transform: scale(0.98);
   -moz-transform: scale(0.98);
   -o-transform: scale(0.98);
   -ms-transform: scale(0.98);
   transform: scale(0.98);
 }
-.session-main .session-form .session-submit-block .session-btn.disabled {
+.session-form .session-submit-block .session-btn.disabled {
   background: #a1a1a1;
   pointer-events: none;
 }
-.session-main .session-footer {
+.session-footer {
   text-align: center;
 }
-.session-main .session-footer p {
+.session-footer p {
   font-size: 14px;
   color: #a1a1a1;
   font-weight: 300;
   margin-top: 0;
   margin-bottom: 12px;
 }
-.session-main .session-footer p a {
+.session-footer p a {
   color: #a1a1a1;
 }
-.session-main .session-footer p a >b {
+.session-footer p a >b {
   font-weight: 500 !important;
 }
-.session-main .session-footer p a:hover {
+.session-footer p a:hover {
   text-decoration: underline;
 }
 @media only screen and (max-width: 340px) {
-  .session-main .session-footer p a >b {
+  .session-footer p a >b {
     display: block;
   }
 }
@@ -801,6 +801,57 @@ body {
   -ms-animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
   animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
 }
+.line_marks {
+  width: 100px;
+  display: block;
+  margin: 10% auto;
+}
+.line_marks .path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+}
+.line_marks .path.circle {
+  -webkit-animation: dash 0.9s ease-in-out;
+  -webkit-animation: dash 0.9s ease-in-out;
+  -moz-animation: dash 0.9s ease-in-out;
+  -o-animation: dash 0.9s ease-in-out;
+  -ms-animation: dash 0.9s ease-in-out;
+  animation: dash 0.9s ease-in-out;
+}
+.line_marks .path.line {
+  stroke-dashoffset: 1000;
+  -webkit-animation: dash 0.9s 0.35s ease-in-out forwards;
+  -webkit-animation: dash 0.9s 0.35s ease-in-out forwards;
+  -moz-animation: dash 0.9s 0.35s ease-in-out forwards;
+  -o-animation: dash 0.9s 0.35s ease-in-out forwards;
+  -ms-animation: dash 0.9s 0.35s ease-in-out forwards;
+  animation: dash 0.9s 0.35s ease-in-out forwards;
+}
+.line_marks .path.check {
+  stroke-dashoffset: -100;
+  -webkit-animation: dash-check 0.9s 0.35s ease-in-out forwards;
+  -webkit-animation: dash-check 0.9s 0.35s ease-in-out forwards;
+  -moz-animation: dash-check 0.9s 0.35s ease-in-out forwards;
+  -o-animation: dash-check 0.9s 0.35s ease-in-out forwards;
+  -ms-animation: dash-check 0.9s 0.35s ease-in-out forwards;
+  animation: dash-check 0.9s 0.35s ease-in-out forwards;
+}
+@-webkit-keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@-webkit-keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
 @-moz-keyframes spinAround {
   from {
     -webkit-transform: rotate(0deg);
@@ -979,5 +1030,69 @@ body {
   100% {
     -webkit-box-shadow: inset 0px 0px 0px 75px #7ac142;
     box-shadow: inset 0px 0px 0px 75px #7ac142;
+  }
+}
+@-moz-keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@-webkit-keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@-o-keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@-moz-keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+@-webkit-keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+@-o-keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+@keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
   }
 }

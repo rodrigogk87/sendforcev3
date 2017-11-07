@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
+import {Router, ActivatedRoute, Params} from "@angular/router";
 import { Observable } from 'rxjs';
+import {TimerObservable} from "rxjs/observable/TimerObservable";
 import 'rxjs/add/operator/map';
 import { tokenNotExpired } from 'angular2-jwt';
 import { AuthHttp } from 'angular2-jwt';
@@ -13,14 +15,13 @@ export class AuthenticationService {
 	public static LOGIN_NOT_ACTIVE=2;
 	public static LOGIN_FAILED=3;
 	
-    constructor(private http: Http,public authHttp: AuthHttp) {
+    constructor(private http: Http,public authHttp: AuthHttp,private router: Router) {
         // set token if saved in local storage
         var token = localStorage.getItem('token');
         this.token = token;
     }
 
-    login(email: string, password: string): Observable<any> {
-		
+    login(email: string, password: string): Observable<any> {	
         return this.http.post(GLOBAL.apiurl+'/authenticate', JSON.stringify({ email: email, password: password }))
             .map(
 				(response: Response) => {
@@ -33,11 +34,12 @@ export class AuthenticationService {
                     // store  jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('token', token);
 					localStorage.setItem('user', JSON.stringify(user));
-					console.log(user);
-                    // return true to indicate successful login
+					console.log(response);
+                    //hay que ver como hacer si refresca cualquier pagina ya que ya no funciona el timeout
+					this.checkRefreshToken();
+					console.log('Debe activar el usuario');
                     return AuthenticationService.LOGIN_OK; 
                 } else if(user){
-					console.log('Debe activar el usuario');
 					this.resetLocalStorage();
                     return AuthenticationService.LOGIN_NOT_ACTIVE; 
 				}
@@ -49,14 +51,38 @@ export class AuthenticationService {
             });
     }
 
-	resetLocalStorage(){
-		this.token = null;
-		localStorage.removeItem('token');
-		localStorage.removeItem('user');	
+	checkRefreshToken(){
+		 let timer = TimerObservable.create(30000, 30000);
+		 timer.subscribe(t => {
+			console.log('tick');
+			this.refreshToken().subscribe(
+						result => { 
+							if(!result)
+							this.router.navigate(['login']);},
+						err => {
+							this.resetLocalStorage();
+							this.router.navigate(['login']);
+						}
+					);
+		});
 	}
-		
-	loggedIn() {
-	  return tokenNotExpired();
+	
+	refreshToken(): Observable<any>{
+		return this.authHttp.get(GLOBAL.apiurl+'/refresh-token',"").map(
+				(response) => {
+						let token = response.json() && response.json().token;
+						if (token){
+							console.log('refresh token');
+							localStorage.setItem('token', token);
+							return true;
+						}
+						else{
+							console.log('no token');
+							this.resetLocalStorage();
+							return false;
+						}
+					}
+		);
 	}
 	
     logout(): Observable<any> {
@@ -70,4 +96,15 @@ export class AuthenticationService {
 						}
 			);
     }
+	
+	resetLocalStorage(){
+		this.token = null;
+		localStorage.removeItem('token');
+		localStorage.removeItem('user');	
+	}
+		
+	loggedIn() {
+	  return tokenNotExpired();
+	}
+	
 }
