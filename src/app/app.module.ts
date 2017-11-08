@@ -12,6 +12,7 @@ import { UserService } from './services/user.service';
 import { confirmationComponent } from './confirmation/confirmation.component';
 import { FormErrorsService } from './services/form-errors.service';
 import { AuthenticationService } from './services/authentication.service';
+import { TestService } from './services/test.service';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { LoggedInGuard } from './services/loggued-in-guard.service';
@@ -33,7 +34,7 @@ import { LoggedInGuard } from './services/loggued-in-guard.service';
 	FormsModule,
 	AuthModule
   ],
-  providers: [appRoutingProviders,UserService,FormErrorsService,AuthenticationService,AuthGuard,LoggedInGuard],
+  providers: [appRoutingProviders,UserService,FormErrorsService,AuthenticationService,AuthGuard,LoggedInGuard,TestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

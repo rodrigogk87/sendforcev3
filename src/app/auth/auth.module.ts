@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Http, RequestOptions } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import {AuthHttpInterceptor} from "./authHttpInterceptor";
+import { AuthenticationService } from '../services/authentication.service';
 
-export function authHttpServiceFactory(http: Http, options: RequestOptions) {
-  return new AuthHttp(new AuthConfig(), http, options);
+export function authHttpServiceFactory(http: Http, options: RequestOptions, authService: AuthenticationService) {
+  return new AuthHttpInterceptor(http, options,authService);
 }
 
 @NgModule({
@@ -11,7 +13,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     {
       provide: AuthHttp,
       useFactory: authHttpServiceFactory,
-      deps: [Http, RequestOptions]
+      deps: [Http, RequestOptions, AuthenticationService]
     }
   ]
 })

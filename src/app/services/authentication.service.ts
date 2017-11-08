@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable,Injector } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import {Router, ActivatedRoute, Params} from "@angular/router";
 import { Observable } from 'rxjs';
@@ -14,9 +14,12 @@ export class AuthenticationService {
 	public static LOGIN_OK=1;
 	public static LOGIN_NOT_ACTIVE=2;
 	public static LOGIN_FAILED=3;
+	private authHttp: AuthHttp;
 	
-    constructor(private http: Http,public authHttp: AuthHttp,private router: Router) {
+	//Se usa injector porque sino se forma una dependencia ciclica --> leer mas sobre el tema pero no se permite en typescript
+    constructor(private http: Http,private injector:Injector,private router: Router) {
         // set token if saved in local storage
+		setTimeout(() => this.authHttp = injector.get(AuthHttp));
         var token = localStorage.getItem('token');
         this.token = token;
     }
@@ -36,8 +39,7 @@ export class AuthenticationService {
 					localStorage.setItem('user', JSON.stringify(user));
 					console.log(response);
                     //hay que ver como hacer si refresca cualquier pagina ya que ya no funciona el timeout
-					this.checkRefreshToken();
-					console.log('Debe activar el usuario');
+					//this.checkRefreshToken();
                     return AuthenticationService.LOGIN_OK; 
                 } else if(user){
 					this.resetLocalStorage();
@@ -51,7 +53,7 @@ export class AuthenticationService {
             });
     }
 
-	checkRefreshToken(){
+	/*checkRefreshToken(){
 		 let timer = TimerObservable.create(30000, 30000);
 		 timer.subscribe(t => {
 			console.log('tick');
@@ -65,7 +67,7 @@ export class AuthenticationService {
 						}
 					);
 		});
-	}
+	}*/
 	
 	refreshToken(): Observable<any>{
 		return this.authHttp.get(GLOBAL.apiurl+'/refresh-token',"").map(
