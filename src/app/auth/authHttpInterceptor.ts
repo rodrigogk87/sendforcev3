@@ -2,12 +2,12 @@ import {RequestOptions, Response, Request, RequestOptionsArgs, Headers, Http} fr
 import {Observable} from "rxjs";
 import {AuthHttp, AuthConfig} from "angular2-jwt";
 import { AuthenticationService } from '../services/authentication.service';
-
+import {Router, ActivatedRoute, Params} from "@angular/router";
 
 export class AuthHttpInterceptor extends AuthHttp {
 	
 
-  constructor(http: Http, defaultOptions: RequestOptions,private authService: AuthenticationService) {
+  constructor(http: Http, defaultOptions: RequestOptions,private authService: AuthenticationService,private router: Router) {
     super(new AuthConfig({
 	  noClientCheck: true,
       tokenName: 'token',
@@ -57,19 +57,8 @@ export class AuthHttpInterceptor extends AuthHttp {
 		
       if (this.isUnauthorized(err.status)) {
         //logout the user or do what you want
-        this.authService.refreshToken().subscribe(result => {
-					if(!result){
-					}
-				},
-				err => {
-				}
-			);
-		
-		console.log('error intercepted');
-        if (err instanceof Response) {
-          return Observable.throw(err.json().message || 'backend server error');
-        }
-        return Observable.empty();
+        this.authService.resetLocalStorage();
+		this.router.navigate(['login']);
       } else {
         return Observable.throw(err);
       }
