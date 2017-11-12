@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   testApi(){
 	  this.testService.test().subscribe(result => {
 					console.log(result);
+					alert(result);
 				},
 				err => {
 					

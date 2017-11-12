@@ -10,9 +10,9 @@ import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
 	{ path: 'login', component: loginComponent, canActivate: [LoggedInGuard]},
-	{ path: 'register', component: registroComponent},
-	{ path: 'reset-password', component: passwordresetComponent},
-	{ path: 'confirmation', component: confirmationComponent},
+	{ path: 'register', component: registroComponent, canActivate: [LoggedInGuard]},
+	{ path: 'reset-password', component: passwordresetComponent, canActivate: [LoggedInGuard]},
+	{ path: 'confirmation', component: confirmationComponent, canActivate: [LoggedInGuard]},
 	{ path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
     { path: '**', redirectTo: 'login' }
 ];

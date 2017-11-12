@@ -16,9 +16,9 @@ export class AuthHttpInterceptor extends AuthHttp {
     }), http, defaultOptions);
   }
 
-  /*request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
+  request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
     return this.intercept(super.request(url, options));
-  }*/
+  }
 
   get(url: string, options?: RequestOptionsArgs): Observable<Response> {
     return this.intercept(super.get(url, options));
