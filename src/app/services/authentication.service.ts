@@ -31,6 +31,8 @@ export class AuthenticationService {
                 // login successful if there's a jwt token in the response
                 let token = response.json() && response.json().token;
 				let user =  response.json() && response.json().userdata;
+				let error = response.json() && response.json().error;
+				
                 if (token && user) {
                     // set token property
                     this.token = token;
@@ -44,6 +46,9 @@ export class AuthenticationService {
                 } else if(user){
 					this.resetLocalStorage();
                     return AuthenticationService.LOGIN_NOT_ACTIVE; 
+				} else if(error){
+					this.resetLocalStorage();
+                    return response.json(); //devolvemos los errores
 				}
 				else{
 					console.log('Credenciales invalidas');

@@ -60,6 +60,11 @@ export class loginComponent implements OnInit,FormInterface {
 			this.authenticationService.login(this.user.email, this.user.password)
             .subscribe(result => {
 					this.isloading=false;
+					if(result.error){
+							for (let key in result.error) {
+								this.errors.set(key,result.error[key][0]);
+							}
+					}
 					if (result == AuthenticationService.LOGIN_OK) {
 						this.router.navigate(['home']);
 					} 
