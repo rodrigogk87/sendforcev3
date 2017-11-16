@@ -16,6 +16,7 @@ import { TestService } from './services/test.service';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { LoggedInGuard } from './services/loggued-in-guard.service';
+import { IcheckDirective } from './directives/icheck.directive';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { LoggedInGuard } from './services/loggued-in-guard.service';
     registroComponent,
     passwordresetComponent,
     confirmationComponent,
-    HomeComponent
+    HomeComponent,
+	IcheckDirective
   ],
   imports: [
 	routing,

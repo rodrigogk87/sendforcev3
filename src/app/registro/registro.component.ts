@@ -5,6 +5,9 @@ import {UserService} from '../services/user.service';
 import { FormErrorsService } from '../services/form-errors.service';
 import { FormInterface } from '../interfaces/FormInterface';
 
+declare var jquery:any;
+declare var $ :any;
+
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -27,8 +30,6 @@ export class registroComponent implements OnInit,FormInterface {
 
   ngOnInit() {
   }
-  
-
   
   onSubmit(formRegisterUser) {
 		this.errors= new Map();
