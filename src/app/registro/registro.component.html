@@ -57,7 +57,7 @@
 				</div>
 				
 				<div class="registration-submit-block">
-					<button type="submit" class="registration-btn" [ngClass]="{'is-loading':isloading}">Crear Cuenta</button>
+					<button type="submit" class="registration-btn" [ngClass]="{'is-loading':isloading}" [disabled]="!formRegisterUser.valid">Crear Cuenta</button>
 				</div>
 			
 			</form>
